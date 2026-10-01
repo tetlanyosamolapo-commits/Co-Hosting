@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApexHost Vryburg | Hands-Free Airbnb Co-Hosting & Property Management</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        emerald: {
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            900: '#064e3b',
+                        },
+                        navy: {
+                            800: '#111827',
+                            900: '#0b132b',
+                            950: '#030712',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.75);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .glass-card {
+            background: rgba(11, 19, 43, 0.65);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* Custom range slider styling */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+
+        input[type=range]:focus {
+            outline: none;
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 10px;
+            cursor: pointer;
+            background: #1f2937;
+            border-radius: 9999px;
+            border: 1px solid #374151;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #10b981;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -8px;
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
+            border: 2px solid #ffffff;
+        }
+
+        input[type=range]::-moz-range-track {
+            width: 100%;
+            height: 10px;
+            cursor: pointer;
+            background: #1f2937;
+            border-radius: 9999px;
+        }
+
+        input[type=range]::-moz-range-thumb {
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #10b981;
+            cursor: pointer;
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
+            border: 2px solid #ffffff;
+        }
+    </style>
+</head>
+<body class="bg-navy-950 text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-white">
+
+    <!-- FLOATING WHATSAPP CTA BUTTON -->
+    <a href="https://wa.me/?text=Hi%20ApexHost!%20I%20have%20a%20property/cottage%20in%20the%20area%20and%20would%20like%20to%20know%20how%20much%20I%20can%20earn." 
+       target="_blank" 
+       class="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-4 py-3 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold rounded-full shadow-2xl shadow-emerald-500/40 hover:scale-105 transition-all group border-2 border-white/20">
+        <i class="fa-brands fa-whatsapp text-2xl"></i>
+        <span class="hidden sm:inline text-sm font-extrabold tracking-tight">Chat with a Local Co-Host</span>
+        <span class="relative flex h-3 w-3 sm:hidden">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-slate-900 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-slate-950"></span>
+        </span>
+    </a>
+
+    <!-- HEADER & NAVIGATION -->
+    <header class="fixed top-0 left-0 right-0 z-40 glass-panel border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center text-slate-950 font-extrabold text-xl shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-house-lock"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-black tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent">ApexHost</span>
+                    <span class="text-[10px] block text-emerald-400 font-bold tracking-widest uppercase">Vryburg & North West</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#guest-demand" class="hover:text-emerald-400 transition-colors">Local Guests</a>
+                <a href="#calculator" class="hover:text-emerald-400 transition-colors">Income Calculator</a>
+                <a href="#sa-solutions" class="hover:text-emerald-400 transition-colors">SA Realities</a>
+                <a href="#meet-host" class="hover:text-emerald-400 transition-colors">About Me</a>
+                <a href="#faq" class="hover:text-emerald-400 transition-colors">FAQ</a>
+            </nav>
+
+            <!-- Header CTA -->
+            <div class="hidden sm:flex items-center gap-4">
+                <a href="#contact" class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-extrabold text-sm transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:-translate-y-0.5">
+                    Free Property Report
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden md:hidden glass-panel border-t border-slate-800 px-6 py-6 space-y-4">
+            <a href="#guest-demand" class="block text-slate-300 hover:text-emerald-400 font-medium py-1">Local Guests</a>
+            <a href="#calculator" class="block text-slate-300 hover:text-emerald-400 font-medium py-1">Income Calculator</a>
+            <a href="#sa-solutions" class="block text-slate-300 hover:text-emerald-400 font-medium py-1">SA Realities</a>
+            <a href="#meet-host" class="block text-slate-300 hover:text-emerald-400 font-medium py-1">About Me</a>
+            <a href="#faq" class="block text-slate-300 hover:text-emerald-400 font-medium py-1">FAQ</a>
+            <a href="#contact" class="block text-center w-full mt-4 px-5 py-3 rounded-xl bg-emerald-500 text-slate-950 font-bold text-sm">
+                Get Free Revenue Assessment
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+        <!-- Ambient Background Glows -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-[400px] h-[400px] bg-teal-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Column: Copy -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    
+                    <!-- Localized Location Badge -->
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-800/90 border border-slate-700 text-emerald-400 text-xs font-bold tracking-wide uppercase shadow-inner">
+                        <i class="fa-solid fa-location-dot"></i>
+                        Vryburg • N14 Corridor • North West
+                    </div>
+
+                    <!-- Main Headline -->
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.12]">
+                        Turn Your Empty Flatlet into <span class="bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500 bg-clip-text text-transparent">R5,000–R8,000+</span> Monthly Passive Income
+                    </h1>
+
+                    <!-- Subheadline -->
+                    <p class="text-base sm:text-lg text-slate-300 font-normal max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Have an unused garden cottage, flatlet, or farm stay? We manage 100% of guest bookings, keyless entry, cleaning, and guest messaging. Airbnb deposits **80% of earnings directly into your bank account**.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#calculator" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-slate-950 font-black text-base shadow-xl shadow-emerald-500/25 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-calculator"></i>
+                            Calculate Flatlet Income
+                        </a>
+                        <a href="#meet-host" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-panel hover:bg-slate-800/80 text-slate-200 hover:text-white font-bold text-base border border-slate-700 transition-all flex items-center justify-center gap-2">
+                            Meet Your Local Co-Host
+                            <i class="fa-solid fa-arrow-down text-xs"></i>
+                        </a>
+                    </div>
+
+                    <!-- Quick Bullet Highlights -->
+                    <div class="pt-6 border-t border-slate-800/80 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0 text-center lg:text-left">
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-black text-white">R0</p>
+                            <p class="text-xs text-slate-400 font-medium">Upfront Costs</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-black text-emerald-400">80%</p>
+                            <p class="text-xs text-slate-400 font-medium">Direct Bank Payout</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-black text-white">100%</p>
+                            <p class="text-xs text-slate-400 font-medium">Hands-Off Work</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Local Property Feature Card -->
+                <div class="lg:col-span-5">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-emerald-500 to-teal-500 opacity-30 blur-xl"></div>
+                        
+                        <div class="relative glass-panel rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl">
+                            
+                            <div class="flex items-center justify-between border-b border-slate-700/60 pb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+                                        <i class="fa-solid fa-shield-halved"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-white font-bold text-sm">Vryburg Garden Cottage Model</h3>
+                                        <p class="text-slate-400 text-xs">Automated Direct Airbnb Payout</p>
+                                    </div>
+                                </div>
+                                <span class="px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-extrabold">20% Fee</span>
+                            </div>
+
+                            <!-- Revenue Visual -->
+                            <div class="bg-navy-900/90 rounded-xl p-5 border border-slate-800 space-y-3">
+                                <div class="flex justify-between items-center text-xs text-slate-400">
+                                    <span>Average Monthly Occupancy</span>
+                                    <span class="text-white font-semibold">12 Nights @ R600</span>
+                                </div>
+                                <div class="flex justify-between items-baseline border-b border-slate-800 pb-2">
+                                    <span class="text-slate-300 font-medium text-sm">Gross Revenue</span>
+                                    <span class="text-2xl font-black text-white">R 7,200</span>
+                                </div>
+                                
+                                <div class="space-y-2 pt-1 text-sm">
+                                    <div class="flex justify-between items-center text-emerald-400 font-bold bg-emerald-500/10 p-3 rounded-lg border border-emerald-500/20">
+                                        <span class="flex items-center gap-2">
+                                            <i class="fa-solid fa-building-columns text-xs"></i> Your Payout (80%)
+                                        </span>
+                                        <span class="text-lg">R 5,760</span>
+                                    </div>
+                                    <div class="flex justify-between items-center text-slate-400 text-xs px-1">
+                                        <span>Co-Host Fee (20% - Covers 100% Management)</span>
+                                        <span>R 1,440</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Guarantees list -->
+                            <div class="space-y-2.5 text-xs text-slate-300">
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-check text-emerald-400"></i>
+                                    <span>Long-term rent baseline: ~R3,000 vs. **R5,760 Net Airbnb**</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-check text-emerald-400"></i>
+                                    <span>R50,000,000 AirCover guest damage protection</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-check text-emerald-400"></i>
+                                    <span>You block out dates whenever family visits</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCAL GUEST DEMAND BREAKDOWN -->
+    <section id="guest-demand" class="py-20 bg-navy-900 border-y border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+                <span class="text-emerald-400 text-xs font-extrabold tracking-widest uppercase">Who Stays In Vryburg?</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-white">Consistent Year-Round Short-Term Guests</h2>
+                <p class="text-slate-300 text-sm sm:text-base">
+                    Unlike coastal holiday towns that suffer off-season slumps, Vryburg has steady mid-week and weekend demand driven by key local sectors.
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Target 1 -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-800 space-y-3 hover:border-emerald-500/40 transition-colors">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-route"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">N14 Transit Drivers</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Overnight travelers driving between Gauteng, Upington, the Kalahari, and Namibia needing secure, clean stopovers.
+                    </p>
+                </div>
+
+                <!-- Target 2 -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-800 space-y-3 hover:border-emerald-500/40 transition-colors">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-cow"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">Auction & Expo Visitors</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Cattle farmers, livestock auction buyers, and agricultural reps attending regular regional sales and expos.
+                    </p>
+                </div>
+
+                <!-- Target 3 -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-800 space-y-3 hover:border-emerald-500/40 transition-colors">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">Contractors & Corporate</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Solar project technicians, district municipality consultants, and corporate auditors staying 3 to 10 nights.
+                    </p>
+                </div>
+
+                <!-- Target 4 -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-800 space-y-3 hover:border-emerald-500/40 transition-colors">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-tree"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">Farm & Game Stay Guests</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Weekend getaway travelers seeking serene self-catering cottages, hunting lodges, and farm retreats near town.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- MEET YOUR LOCAL CO-HOST SECTION -->
+    <section id="meet-host" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-slate-800 relative overflow-hidden">
+                <div class="grid lg:grid-cols-12 gap-10 items-center">
+                    
+                    <!-- Bio Photo / Avatar -->
+                    <div class="lg:col-span-5 text-center">
+                        <div class="relative inline-block">
+                            <div class="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 opacity-50 blur-lg"></div>
+                            <div class="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full bg-slate-800 border-4 border-slate-700 flex items-center justify-center overflow-hidden mx-auto">
+                                <!-- Modern Avatar SVG representing local dedicated host -->
+                                <i class="fa-solid fa-user-gear text-7xl text-slate-500"></i>
+                            </div>
+                            <span class="absolute bottom-2 right-2 px-3 py-1 bg-emerald-500 text-slate-950 font-black text-xs rounded-full shadow-lg">
+                                Local Vryburg Manager
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Personal Bio Copy -->
+                    <div class="lg:col-span-7 space-y-5 text-center lg:text-left">
+                        <span class="text-emerald-400 text-xs font-extrabold tracking-widest uppercase">Personalized Management</span>
+                        <h2 class="text-3xl sm:text-4xl font-black text-white">Why Work With a Dedicated Local Co-Host?</h2>
+                        
+                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                            Big distant property management agencies treat your cottage like a number. As a dedicated local co-host in Vryburg, I personally oversee guest communications, ensure your property is cleaned to 5-star standards, and handle late-night N14 stopover arrivals.
+                        </p>
+
+                        <div class="space-y-3 text-xs sm:text-sm text-slate-300 pt-2">
+                            <div class="flex items-center gap-3 justify-center lg:justify-start">
+                                <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs shrink-0">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <span><strong>Fast Response Times:</strong> I answer guest inquiries within 5 minutes to boost listing rank.</span>
+                            </div>
+                            <div class="flex items-center gap-3 justify-center lg:justify-start">
+                                <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs shrink-0">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <span><strong>On-The-Ground Supervision:</strong> Local cleaning oversight after every checkout.</span>
+                            </div>
+                            <div class="flex items-center gap-3 justify-center lg:justify-start">
+                                <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs shrink-0">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <span><strong>Dynamic Pricing:</strong> Raising rates during busy auction weeks to maximize profits.</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOUTH AFRICAN OPERATIONAL REALITIES -->
+    <section id="sa-solutions" class="py-20 bg-navy-900 border-y border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="text-emerald-400 text-xs font-extrabold tracking-widest uppercase">Built For Local Realities</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-white">How We Handle South African Property Challenges</h2>
+                <p class="text-slate-300 text-sm sm:text-base">
+                    Managing short-term rentals in South Africa requires solving specific local operational hurdles seamlessly.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- Solution 1 -->
+                <div class="glass-panel rounded-2xl p-7 space-y-4 border border-slate-800 relative">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Prepaid Electricity Monitoring</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        We monitor your prepaid meter token levels remotely or digitally. Guest usage is factored into pricing, ensuring your meter never runs out during late-night stays.
+                    </p>
+                </div>
+
+                <!-- Solution 2 -->
+                <div class="glass-panel rounded-2xl p-7 space-y-4 border border-slate-800 relative">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-plug-circle-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Load Shedding Readiness</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        We assist in setting up affordable Wi-Fi UPS mini-inverters and rechargeable LED lighting bulbs so guests never leave negative reviews during power cuts.
+                    </p>
+                </div>
+
+                <!-- Solution 3 -->
+                <div class="glass-panel rounded-2xl p-7 space-y-4 border border-slate-800 relative">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-torii-gate"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Gate Access & Remotes</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Whether your property has a motor gate, complex intercom, or security lockbox, we set up clear guest access protocols and temporary keypad codes.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE EARNINGS CALCULATOR (ZAR) -->
+    <section id="calculator" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+                <span class="text-emerald-400 text-xs font-extrabold tracking-widest uppercase">ZAR Earnings Calculator</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-white">Compare Airbnb Income vs. Long-Term Rent</h2>
+                <p class="text-slate-300 text-sm sm:text-base">Slide the controls to calculate potential monthly income for your property.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Calculator Controls -->
+                <div class="lg:col-span-7 glass-panel rounded-2xl p-6 sm:p-8 space-y-6">
+                    
+                    <!-- Property Select Buttons -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">1. Select Property Type</label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <button type="button" onclick="selectPropertyType('cottage')" id="btn-cottage" class="prop-type-btn p-3 rounded-xl border border-emerald-500 bg-emerald-500/10 text-white font-bold text-xs sm:text-sm text-center transition-all">
+                                <i class="fa-solid fa-house-user block text-lg mb-1 text-emerald-400"></i>
+                                Garden Cottage
+                            </button>
+                            <button type="button" onclick="selectPropertyType('apartment')" id="btn-apartment" class="prop-type-btn p-3 rounded-xl border border-slate-700 bg-navy-900/50 text-slate-400 font-bold text-xs sm:text-sm text-center hover:border-slate-600 transition-all">
+                                <i class="fa-solid fa-building block text-lg mb-1"></i>
+                                Town Flatlet
+                            </button>
+                            <button type="button" onclick="selectPropertyType('house')" id="btn-house" class="prop-type-btn p-3 rounded-xl border border-slate-700 bg-navy-900/50 text-slate-400 font-bold text-xs sm:text-sm text-center hover:border-slate-600 transition-all">
+                                <i class="fa-solid fa-wheat-awn block text-lg mb-1"></i>
+                                Farm / Lodge Unit
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Nightly Rate Slider -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <label for="nightlyRate" class="text-xs font-bold text-slate-300 uppercase tracking-wider">2. Estimated Nightly Rate (ZAR)</label>
+                            <span id="nightlyRateValue" class="text-lg font-black text-emerald-400">R 600</span>
+                        </div>
+                        <input type="range" id="nightlyRate" min="350" max="2500" step="50" value="600" oninput="calculateRevenue()">
+                        <div class="flex justify-between text-[11px] text-slate-400">
+                            <span>R350 / night</span>
+                            <span>R2,500 / night</span>
+                        </div>
+                    </div>
+
+                    <!-- Occupancy Days Slider -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <label for="occupancyDays" class="text-xs font-bold text-slate-300 uppercase tracking-wider">3. Occupied Nights Per Month</label>
+                            <span id="occupancyDaysValue" class="text-lg font-black text-emerald-400">12 Nights</span>
+                        </div>
+                        <input type="range" id="occupancyDays" min="5" max="25" step="1" value="12" oninput="calculateRevenue()">
+                        <div class="flex justify-between text-[11px] text-slate-400">
+                            <span>5 Nights (Conservative)</span>
+                            <span>25 Nights (High)</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Calculator Output Display -->
+                <div class="lg:col-span-5 glass-panel rounded-2xl p-6 sm:p-8 space-y-6 border border-emerald-500/30 bg-gradient-to-b from-navy-900 to-slate-900">
+                    <div class="border-b border-slate-800 pb-3">
+                        <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Estimated Monthly Earnings</span>
+                        <h3 class="text-xl font-bold text-white">Your Financial Summary</h3>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-baseline">
+                            <span class="text-slate-400 text-xs">Gross Airbnb Revenue</span>
+                            <span id="grossRevenueDisplay" class="text-base font-bold text-slate-200">R 7,200</span>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 space-y-1">
+                            <div class="flex justify-between items-baseline">
+                                <span class="text-slate-100 font-bold text-xs sm:text-sm">Your Net Payout (80%)</span>
+                                <span id="ownerPayoutDisplay" class="text-2xl sm:text-3xl font-black text-emerald-400">R 5,760</span>
+                            </div>
+                            <p class="text-[11px] text-slate-400">Deposited directly by Airbnb into your bank account.</p>
+                        </div>
+
+                        <div class="flex justify-between items-baseline text-xs text-slate-400 px-1">
+                            <span>Co-Host Management Fee (20%)</span>
+                            <span id="cohostFeeDisplay" class="font-medium">R 1,440</span>
+                        </div>
+                    </div>
+
+                    <!-- Comparison Box -->
+                    <div class="pt-4 border-t border-slate-800 space-y-3">
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-slate-400">Typical Long-Term Lease Rent:</span>
+                            <span id="longTermRentDisplay" class="text-slate-300 font-bold">R 3,000 / mo</span>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl bg-slate-800/90 border border-slate-700/80 flex items-center justify-between">
+                            <span class="text-xs text-slate-300 font-medium">Extra Monthly Gain:</span>
+                            <span id="profitBoostDisplay" class="text-sm font-black text-emerald-400 flex items-center gap-1">
+                                <i class="fa-solid fa-arrow-trend-up"></i> +R 2,760 / mo (+92%)
+                            </span>
+                        </div>
+                    </div>
+
+                    <a href="#contact" class="block w-full py-3.5 text-center rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black text-sm transition-all shadow-lg shadow-emerald-500/20">
+                        Claim Your Property Valuation
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 30-DAY RISK-FREE TRIAL GUARANTEE -->
+    <section class="py-12 bg-gradient-to-r from-emerald-950/60 via-navy-900 to-emerald-950/60 border-y border-emerald-500/30 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 text-3xl font-black mb-1 border border-emerald-500/40">
+                <i class="fa-solid fa-award"></i>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-black text-white">Our 30-Day Risk-Free Co-Hosting Guarantee</h2>
+            <p class="text-slate-300 text-sm max-w-2xl mx-auto leading-relaxed">
+                Test our management services with zero risk. If you are not completely thrilled with our guest care, listing ranking, or communication within the first 30 days, you can cancel our co-hosting agreement immediately with <strong>zero cancellation fees or penalties</strong>.
+            </p>
+        </div>
+    </section>
+
+    <!-- FREQUENTLY ASKED QUESTIONS (ACCORDION) -->
+    <section id="faq" class="py-20 bg-navy-900/50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14 space-y-3">
+                <span class="text-emerald-400 text-xs font-extrabold tracking-widest uppercase">Objection-Busting Answers</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-white">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="space-y-4">
+                
+                <!-- FAQ 1 -->
+                <div class="glass-panel rounded-xl border border-slate-800 overflow-hidden">
+                    <button onclick="toggleFaq(1)" class="w-full px-6 py-5 text-left font-bold text-white flex justify-between items-center hover:bg-slate-800/50 transition-colors">
+                        <span>How are payouts handled? Do I have to pay you manually?</span>
+                        <i id="faq-icon-1" class="fa-solid fa-chevron-down text-emerald-400 text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-1" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-300 space-y-2 border-t border-slate-800/60 pt-3">
+                        <p>No, you never pay us out of pocket! Inside Airbnb, we set up Co-Host Split Payout rules. When a guest books, Airbnb deposits 80% directly into your SA bank account and sends our 20% co-hosting fee separately.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="glass-panel rounded-xl border border-slate-800 overflow-hidden">
+                    <button onclick="toggleFaq(2)" class="w-full px-6 py-5 text-left font-bold text-white flex justify-between items-center hover:bg-slate-800/50 transition-colors">
+                        <span>What about parties, noise, or property damage?</span>
+                        <i id="faq-icon-2" class="fa-solid fa-chevron-down text-emerald-400 text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-2" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-300 space-y-2 border-t border-slate-800/60 pt-3">
+                        <p>We enforce a strict <strong>No-Party & Strict Quiet Hours Policy</strong>. All reservations are protected by Airbnb AirCover, offering up to $3 Million (~R50 Million) in property damage protection and liability coverage.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="glass-panel rounded-xl border border-slate-800 overflow-hidden">
+                    <button onclick="toggleFaq(3)" class="w-full px-6 py-5 text-left font-bold text-white flex justify-between items-center hover:bg-slate-800/50 transition-colors">
+                        <span>How do prepaid electricity and cleaning fees work?</span>
+                        <i id="faq-icon-3" class="fa-solid fa-chevron-down text-emerald-400 text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-3" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-300 space-y-2 border-t border-slate-800/60 pt-3">
+                        <p>Guests pay a separate cleaning fee on top of the nightly rate, which directly funds turnover cleaners after checkout. For prepaid electricity, we monitor token levels and factor standard usage into guest nightly pricing.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="glass-panel rounded-xl border border-slate-800 overflow-hidden">
+                    <button onclick="toggleFaq(4)" class="w-full px-6 py-5 text-left font-bold text-white flex justify-between items-center hover:bg-slate-800/50 transition-colors">
+                        <span>What if I want to stop co-hosting or use the flatlet myself?</span>
+                        <i id="faq-icon-4" class="fa-solid fa-chevron-down text-emerald-400 text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-4" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-300 space-y-2 border-t border-slate-800/60 pt-3">
+                        <p>You retain 100% control! You can block out personal dates anytime on the calendar for visiting family. Our agreement has zero long-term lock-ins—you can cancel with 30 days notice anytime.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & EVALUATION FORM -->
+    <section id="contact" class="py-20 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-emerald-500/40 relative shadow-2xl">
+                
+                <div class="text-center max-w-2xl mx-auto mb-10 space-y-2">
+                    <span class="px-3.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-bold uppercase tracking-wider">Free Property Assessment</span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-white">Get Your Free Income Report</h2>
+                    <p class="text-slate-300 text-xs sm:text-sm">
+                        Submit your details below to receive an estimated monthly revenue report for your garden cottage or flatlet via WhatsApp.
+                    </p>
+                </div>
+
+                <form id="evaluationForm" onsubmit="handleFormSubmit(event)" class="space-y-5">
+                    <div class="grid sm:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Your Name *</label>
+                            <input type="text" id="ownerName" required placeholder="e.g. Johan van der Merwe" class="w-full px-4 py-3.5 rounded-xl bg-navy-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition-colors text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">WhatsApp / Phone Number *</label>
+                            <input type="tel" id="ownerPhone" required placeholder="e.g. 082 123 4567" class="w-full px-4 py-3.5 rounded-xl bg-navy-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition-colors text-sm">
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Suburb / Town / Area *</label>
+                            <input type="text" id="propertyLocation" required placeholder="e.g. Vryburg / Stella / Local Area" class="w-full px-4 py-3.5 rounded-xl bg-navy-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition-colors text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Property Type *</label>
+                            <select id="propertyTypeSelect" required class="w-full px-4 py-3.5 rounded-xl bg-navy-900 border border-slate-700 text-white focus:outline-none focus:border-emerald-500 transition-colors text-sm">
+                                <option value="Garden Cottage / Flatlet">Garden Cottage / Flatlet</option>
+                                <option value="Town Apartment">Town Apartment</option>
+                                <option value="Farm Stay / Rural Unit">Farm Stay / Rural Cottage</option>
+                                <option value="Residential House">Full Residential House</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Optional Notes</label>
+                        <textarea id="ownerNotes" rows="3" placeholder="Tell us if the cottage is currently empty, furnished, or has prepaid electricity..." class="w-full px-4 py-3.5 rounded-xl bg-navy-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition-colors text-sm"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black text-base shadow-xl shadow-emerald-500/25 transition-all flex items-center justify-center gap-3">
+                        <i class="fa-brands fa-whatsapp text-xl"></i>
+                        Request Free Report via WhatsApp
+                    </button>
+                    
+                    <p class="text-center text-xs text-slate-400">
+                        <i class="fa-solid fa-lock text-slate-500"></i> Your details are confidential. Zero obligation.
+                    </p>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy-950 border-t border-slate-800 py-10 text-slate-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+            <p>&copy; 2026 ApexHost Vryburg Co-Hosting Solutions. All rights reserved.</p>
+            <p class="text-slate-500 max-w-xl mx-auto text-[11px]">
+                Disclaimer: ApexHost is an independent property management co-hosting provider in South Africa and is not directly operated by or affiliated with Airbnb, Inc.
+            </p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        let selectedProperty = 'cottage';
+        
+        const propertyPresets = {
+            cottage: { rate: 600, days: 12, longTerm: 3000 },
+            apartment: { rate: 800, days: 15, longTerm: 5500 },
+            house: { rate: 1400, days: 10, longTerm: 9000 }
+        };
+
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        // FAQ Toggle Logic
+        function toggleFaq(index) {
+            const answer = document.getElementById(`faq-answer-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                answer.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        // Property Type Selector
+        function selectPropertyType(type) {
+            selectedProperty = type;
+            const preset = propertyPresets[type];
+
+            document.querySelectorAll('.prop-type-btn').forEach(btn => {
+                btn.classList.remove('border-emerald-500', 'bg-emerald-500/10', 'text-white');
+                btn.classList.add('border-slate-700', 'bg-navy-900/50', 'text-slate-400');
+            });
+
+            const activeBtn = document.getElementById(`btn-${type}`);
+            activeBtn.classList.remove('border-slate-700', 'bg-navy-900/50', 'text-slate-400');
+            activeBtn.classList.add('border-emerald-500', 'bg-emerald-500/10', 'text-white');
+
+            document.getElementById('nightlyRate').value = preset.rate;
+            document.getElementById('occupancyDays').value = preset.days;
+
+            calculateRevenue();
+        }
+
+        // Format ZAR Currency
+        function formatCurrency(amount) {
+            return 'R ' + Math.round(amount).toLocaleString('en-ZA');
+        }
+
+        // Calculate Revenue Logic
+        function calculateRevenue() {
+            const nightlyRate = parseFloat(document.getElementById('nightlyRate').value);
+            const occupancyDays = parseFloat(document.getElementById('occupancyDays').value);
+
+            document.getElementById('nightlyRateValue').innerText = formatCurrency(nightlyRate);
+            document.getElementById('occupancyDaysValue').innerText = `${occupancyDays} Nights`;
+
+            const grossRevenue = nightlyRate * occupancyDays;
+            const ownerPayout = grossRevenue * 0.80;
+            const cohostFee = grossRevenue * 0.20;
+
+            const longTermBaseline = propertyPresets[selectedProperty].longTerm;
+            const netProfitBoost = ownerPayout - longTermBaseline;
+            const percentageBoost = Math.round((netProfitBoost / longTermBaseline) * 100);
+
+            document.getElementById('grossRevenueDisplay').innerText = formatCurrency(grossRevenue);
+            document.getElementById('ownerPayoutDisplay').innerText = formatCurrency(ownerPayout);
+            document.getElementById('cohostFeeDisplay').innerText = formatCurrency(cohostFee);
+            document.getElementById('longTermRentDisplay').innerText = formatCurrency(longTermBaseline) + ' / mo';
+
+            const profitBoostDisplay = document.getElementById('profitBoostDisplay');
+            if (netProfitBoost > 0) {
+                profitBoostDisplay.className = "text-sm font-black text-emerald-400 flex items-center gap-1";
+                profitBoostDisplay.innerHTML = `<i class="fa-solid fa-arrow-trend-up"></i> +${formatCurrency(netProfitBoost)} / mo (+${percentageBoost}%)`;
+            } else {
+                profitBoostDisplay.className = "text-sm font-bold text-slate-400 flex items-center gap-1";
+                profitBoostDisplay.innerHTML = `<i class="fa-solid fa-minus"></i> ${formatCurrency(netProfitBoost)} / mo`;
+            }
+        }
+
+        // WhatsApp Form Submission Handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('ownerName').value.trim();
+            const phone = document.getElementById('ownerPhone').value.trim();
+            const location = document.getElementById('propertyLocation').value.trim();
+            const propType = document.getElementById('propertyTypeSelect').value;
+            const notes = document.getElementById('ownerNotes').value.trim();
+
+            const message = `Hi ApexHost! I would like a Free Revenue Assessment for my property in ${location}.\n\n` +
+                `*Name:* ${name}\n` +
+                `*Phone:* ${phone}\n` +
+                `*Property Type:* ${propType}\n` +
+                `*Notes:* ${notes || 'None'}`;
+
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/?text=${encodedMessage}`, '_blank');
+        }
+
+        window.onload = function() {
+            calculateRevenue();
+        };
+    </script>
+</body>
+</html>
